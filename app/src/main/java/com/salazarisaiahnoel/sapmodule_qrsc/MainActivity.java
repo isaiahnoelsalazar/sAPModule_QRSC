@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CAMERA_PERMISSION){
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 recreate();
+            } else {
+                Toast.makeText(this, "This function requires access to camera.", Toast.LENGTH_LONG).show();
             }
         }
     }
