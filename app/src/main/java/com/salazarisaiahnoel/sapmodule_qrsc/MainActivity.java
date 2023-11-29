@@ -2,6 +2,7 @@ package com.salazarisaiahnoel.sapmodule_qrsc;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 import android.content.ClipData;
@@ -10,12 +11,14 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.util.DisplayMetrics;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
@@ -90,8 +93,18 @@ public class MainActivity extends AppCompatActivity {
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
                 .build();
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        //int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+
+        ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) sv.getLayoutParams();
+        lp.height = width;
+        lp.width = width;
+        sv.setLayoutParams(lp);
+
         cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(512, 512)
+                .setRequestedPreviewSize(width, width)
                 .setAutoFocusEnabled(true)
                 .build();
 
