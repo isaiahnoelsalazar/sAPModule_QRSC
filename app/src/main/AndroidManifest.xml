@@ -24,6 +24,10 @@
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.salazarisaiahnoel.sapmodule.OPEN_MODULE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 
